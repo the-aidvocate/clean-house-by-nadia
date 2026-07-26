@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, CheckCircle2, Phone, Mail, MapPin, Shield, Star, Droplets, Home, Clock, Menu, X, ArrowRight } from 'lucide-react';
+import { Sparkles, CheckCircle2, Phone, MapPin, Shield, Star, Home, Clock, Menu, X, ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +16,7 @@ export default function App() {
       // 1. Hero Animations
       const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.2 } });
       tl.from('.hero-bg', { scale: 1.1, duration: 2, ease: 'power3.out' })
-        .from('.hero-badge', { y: 20, opacity: 0 }, '-=1.5')
+        .from('.hero-badge', { y: 20, opacity: 0, stagger: 0.1 }, '-=1.5')
         .from('.hero-title span', { y: 100, opacity: 0, stagger: 0.1, duration: 1 }, '-=1.4')
         .from('.hero-desc', { y: 20, opacity: 0 }, '-=1')
         .from('.hero-cta', { y: 20, opacity: 0, stagger: 0.1 }, '-=0.8');
@@ -80,7 +80,7 @@ export default function App() {
             <a href="#top" className="flex items-center gap-2 group">
               <Sparkles className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform" />
               <span className="font-display font-bold text-lg tracking-tight text-ink">
-                CLEAN HOUSE <span className="font-serif italic text-primary font-normal text-xl ml-1">by Nadia</span>
+                CLEAN HOUSE <span className="font-serif italic text-primary font-normal text-xl ml-1">by Nadia & Cipri</span>
               </span>
             </a>
 
@@ -120,8 +120,8 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/40 to-surface z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-surface z-10" />
           <img 
-            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=80" 
-            alt="Pristine living room" 
+            src="https://images.unsplash.com/photo-1628177142898-93e46e46537a?auto=format&fit=crop&w=2000&q=80" 
+            alt="Friendly cleaning professionals working together" 
             className="hero-bg w-full h-full object-cover object-center opacity-40"
           />
         </div>
@@ -147,9 +147,15 @@ export default function App() {
         {/* Hero Content */}
         <div className="relative z-20 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
           <div className="max-w-3xl">
-            <div className="hero-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-white/40 shadow-sm mb-6">
-              <Star className="w-3.5 h-3.5 text-primary fill-primary" />
-              <span className="text-xs font-bold uppercase tracking-widest text-primary">10 Years of Excellence</span>
+            <div className="flex flex-wrap gap-3 mb-6">
+              <div className="hero-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-white/40 shadow-sm">
+                <Star className="w-3.5 h-3.5 text-primary fill-primary" />
+                <span className="text-xs font-bold uppercase tracking-widest text-primary">10 Years of Excellence</span>
+              </div>
+              <div className="hero-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-white/40 shadow-sm">
+                <MapPin className="w-3.5 h-3.5 text-primary" />
+                <span className="text-xs font-bold uppercase tracking-widest text-primary">Ayia Napa • Paralimni • Kapparis</span>
+              </div>
             </div>
             
             <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold text-ink leading-[1.1] mb-6 flex flex-wrap gap-x-3 overflow-hidden">
@@ -157,7 +163,7 @@ export default function App() {
             </h1>
             
             <p className="hero-desc text-lg sm:text-xl text-ink/70 mb-10 max-w-xl font-body leading-relaxed">
-              We are a dedicated family business bringing professional equipment, impeccable quality standards, and <span className="font-serif italic text-primary">absolute peace of mind</span> to your home or office.
+              We are a dedicated family business serving the entire Famagusta area. We bring our professional team, impeccable quality standards, and <span className="font-serif italic text-primary">absolute peace of mind</span> to your home or office.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -179,7 +185,7 @@ export default function App() {
             {[
               { icon: Shield, title: "Family Operated", desc: "Built on a decade of trust, treating your space with the same respect we treat our own." },
               { icon: Sparkles, title: "Uncompromising Quality", desc: "Meticulous attention to detail ensuring every corner meets our rigorous premium standards." },
-              { icon: Home, title: "Professional Gear", desc: "Equipped with industry-leading tools and eco-friendly products for a flawless, deep clean." }
+              { icon: Home, title: "Professional Team", desc: "Equipped with industry-leading tools and eco-friendly products for a flawless, deep clean." }
             ].map((feat, i) => (
               <div key={i} className="fade-up glass p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500">
                 <div className="w-12 h-12 bg-accent-light rounded-2xl flex items-center justify-center mb-6">
@@ -262,7 +268,7 @@ export default function App() {
             Ready for a pristine home?
           </h2>
           <p className="text-lg sm:text-xl text-ink/70 mb-12 max-w-2xl mx-auto font-body fade-up">
-            Reach out directly to Nadia. We operate primarily via WhatsApp to ensure fast, personal communication.
+            Reach out directly to Nadia & Cipri. We operate primarily via WhatsApp to ensure fast, personal communication.
           </p>
           
           <div className="fade-up flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -285,18 +291,18 @@ export default function App() {
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-accent" />
             <span className="font-display font-bold text-surface tracking-wide">
-              CLEAN HOUSE <span className="font-serif italic font-normal">by Nadia</span>
+              CLEAN HOUSE <span className="font-serif italic font-normal">by Nadia & Cipri</span>
             </span>
           </div>
           
           <div className="flex items-center gap-6 text-sm">
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" /> Accepting new clients
+              <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" /> Serving the Famagusta area
             </span>
           </div>
 
           <div className="text-sm font-mono opacity-50">
-            &copy; {new Date().getFullYear()} Clean House by Nadia.
+            &copy; {new Date().getFullYear()} Clean House by Nadia & Cipri.
           </div>
         </div>
       </footer>
