@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, CheckCircle2, Phone, MapPin, Shield, Star, Home, Clock, Menu, X, ArrowRight } from 'lucide-react';
+import { Sparkles, CheckCircle2, Phone, MapPin, Shield, Star, Home, Clock, Menu, X, ArrowRight, Heart } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,22 +13,34 @@ export default function App() {
   // GSAP Animations Setup
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // 1. Hero Animations
-      const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.2 } });
-      tl.from('.hero-bg', { scale: 1.1, duration: 2, ease: 'power3.out' })
-        .from('.hero-badge', { y: 20, opacity: 0, stagger: 0.1 }, '-=1.5')
-        .from('.hero-title span', { y: 100, opacity: 0, stagger: 0.1, duration: 1 }, '-=1.4')
-        .from('.hero-desc', { y: 20, opacity: 0 }, '-=1')
-        .from('.hero-cta', { y: 20, opacity: 0, stagger: 0.1 }, '-=0.8');
+      // 1. Hero Animations (Warmer, Bouncier)
+      const tl = gsap.timeline({ defaults: { ease: 'back.out(1.5)', duration: 1.2 } });
+      
+      // Parallax Background
+      gsap.to('.hero-bg', {
+        yPercent: 15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#top',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      tl.from('.hero-badge', { y: 30, opacity: 0, scale: 0.8, stagger: 0.1 }, 0.2)
+        .from('.hero-title span', { y: 60, opacity: 0, stagger: 0.1, duration: 1, ease: 'power3.out' }, '-=0.8')
+        .from('.hero-desc', { y: 20, opacity: 0, ease: 'power3.out' }, '-=0.6')
+        .from('.hero-cta', { y: 20, opacity: 0, scale: 0.9, stagger: 0.1 }, '-=0.6');
 
       // 2. Sticky Scroll Sections (Protocol)
       const cards = gsap.utils.toArray('.protocol-card');
       cards.forEach((card, i) => {
         if (i !== cards.length - 1) {
           gsap.to(card, {
-            scale: 0.95,
-            opacity: 0.5,
-            filter: 'blur(4px)',
+            scale: 0.92,
+            opacity: 0.4,
+            filter: 'blur(8px)',
             scrollTrigger: {
               trigger: card,
               start: 'top top+=100',
@@ -39,15 +51,17 @@ export default function App() {
         }
       });
 
-      // 3. Simple fade-ins for grid items
+      // 3. Simple fade-ins for grid items with slight scale
       gsap.utils.toArray('.fade-up').forEach((el) => {
         gsap.from(el, {
-          y: 40,
+          y: 50,
           opacity: 0,
+          scale: 0.95,
           duration: 1,
+          ease: 'back.out(1.2)',
           scrollTrigger: {
             trigger: el,
-            start: 'top bottom-=100',
+            start: 'top bottom-=50',
             toggleActions: 'play none none reverse'
           }
         });
@@ -65,20 +79,22 @@ export default function App() {
     };
   }, []);
 
-  const signatureSparks = Array.from({ length: 8 });
+  const signatureSparks = Array.from({ length: 12 }); // More particles for a warmer feel
 
   return (
-    <div ref={mainRef} className="relative w-full overflow-x-hidden selection:bg-accent selection:text-primary-dark">
+    <div ref={mainRef} className="relative w-full overflow-x-hidden selection:bg-warm-light selection:text-primary-dark">
       
       {/* 1. NAVBAR */}
       <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'py-4' : 'py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
           {/* Nav Container */}
-          <div className={`w-full flex items-center justify-between px-6 py-3 rounded-full transition-all duration-500 ${isScrolled ? 'glass' : 'bg-transparent'}`}>
+          <div className={`w-full flex items-center justify-between px-6 py-3.5 rounded-full transition-all duration-500 shadow-sm ${isScrolled ? 'bg-surface/90 backdrop-blur-xl border border-primary/10 shadow-primary/5' : 'bg-surface/60 backdrop-blur-md border border-white/50'}`}>
             
             {/* Logo */}
-            <a href="#top" className="flex items-center gap-2 group">
-              <Sparkles className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform" />
+            <a href="#top" className="flex items-center gap-2.5 group">
+              <div className="bg-white p-1.5 rounded-full shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <Sparkles className="w-5 h-5 text-primary" />
+              </div>
               <span className="font-display font-bold text-lg tracking-tight text-ink">
                 CLEAN HOUSE <span className="font-serif italic text-primary font-normal text-xl ml-1">by Nadia & Cipri</span>
               </span>
@@ -91,87 +107,103 @@ export default function App() {
                   {item}
                 </a>
               ))}
-              <a href="https://wa.me/35797898105" target="_blank" rel="noreferrer" className="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20 flex items-center gap-2">
-                <Phone className="w-4 h-4" /> WhatsApp
+              <a href="https://wa.me/35797898105" target="_blank" rel="noreferrer" className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary-dark hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center gap-2">
+                <Phone className="w-4 h-4" /> WhatsApp Us
               </a>
             </div>
 
             {/* Mobile Toggle */}
-            <button className="lg:hidden text-ink" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <X /> : <Menu />}
+            <button className="lg:hidden text-ink p-2 bg-white/50 rounded-full" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 bg-surface/95 backdrop-blur-xl transition-all duration-300 flex flex-col justify-center items-center gap-8 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        {['Services', 'Process', 'About', 'Contact'].map((item) => (
-          <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileMenuOpen(false)} className="text-3xl font-display font-bold text-ink">
+      <div className={`fixed inset-0 z-40 bg-surface/95 backdrop-blur-2xl transition-all duration-400 flex flex-col justify-center items-center gap-8 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        {['Services', 'Process', 'About', 'Contact'].map((item, i) => (
+          <a 
+            key={item} 
+            href={`#${item.toLowerCase()}`} 
+            onClick={() => setMobileMenuOpen(false)} 
+            className="text-4xl font-serif italic text-primary hover:text-primary-dark transition-colors"
+            style={{ transitionDelay: `${i * 50}ms` }}
+          >
             {item}
           </a>
         ))}
       </div>
 
       {/* 2. HERO SECTION */}
-      <header id="top" className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-surface-dark">
+      <header id="top" className="relative min-h-screen flex items-center pt-24 overflow-hidden bg-surface">
         {/* BG Image */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/40 to-surface z-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-surface z-10" />
+        <div className="absolute inset-0 z-0 overflow-hidden bg-surface">
+          {/* Warmer overlays to make it feel friendly and bright */}
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/95 via-surface/40 to-surface z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/30 to-surface/90 z-10" />
+          
           <img 
-            src="https://images.unsplash.com/photo-1628177142898-93e46e46537a?auto=format&fit=crop&w=2000&q=80" 
-            alt="Friendly cleaning professionals working together" 
-            className="hero-bg w-full h-full object-cover object-center opacity-40"
+            src="/logo and service.jpeg" 
+            alt="Nadia & Cipri Team" 
+            className="hero-bg w-full h-full object-cover object-center opacity-80"
+            style={{ transformOrigin: 'top center' }}
           />
         </div>
 
-        {/* Signature Animation: Floating Sparkles */}
-        <div className="absolute top-1/4 right-10 lg:right-32 w-64 h-64 z-20 pointer-events-none hidden md:block opacity-60">
-          {signatureSparks.map((_, i) => (
-            <Sparkles 
-              key={i}
-              className={`absolute text-accent animate-float`}
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${16 + Math.random() * 24}px`,
-                height: `${16 + Math.random() * 24}px`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${4 + Math.random() * 4}s`
-              }}
-            />
-          ))}
+        {/* Signature Animation: Floating Sparkles & Warm Orbs */}
+        <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+          {signatureSparks.map((_, i) => {
+            const isWarm = i % 3 === 0;
+            return (
+              <Sparkles 
+                key={i}
+                className={`absolute animate-float ${isWarm ? 'text-warm' : 'text-accent'}`}
+                style={{
+                  top: `${10 + Math.random() * 80}%`,
+                  left: `${5 + Math.random() * 90}%`,
+                  width: `${16 + Math.random() * 32}px`,
+                  height: `${16 + Math.random() * 32}px`,
+                  animationDelay: `${Math.random() * 4}s`,
+                  animationDuration: `${5 + Math.random() * 5}s`,
+                  opacity: 0.4 + Math.random() * 0.4
+                }}
+              />
+            )
+          })}
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-20 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
+        <div className="relative z-30 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full mt-10">
           <div className="max-w-3xl">
-            <div className="flex flex-wrap gap-3 mb-6">
-              <div className="hero-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-white/40 shadow-sm">
-                <Star className="w-3.5 h-3.5 text-primary fill-primary" />
-                <span className="text-xs font-bold uppercase tracking-widest text-primary">10 Years of Excellence</span>
+            <div className="flex flex-wrap gap-3 mb-8">
+              <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md border border-warm/20">
+                <Heart className="w-4 h-4 text-warm fill-warm" />
+                <span className="text-xs font-bold uppercase tracking-widest text-ink">Family Business</span>
               </div>
-              <div className="hero-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-md border border-white/40 shadow-sm">
-                <MapPin className="w-3.5 h-3.5 text-primary" />
+              <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md border border-primary/10">
+                <MapPin className="w-4 h-4 text-primary" />
                 <span className="text-xs font-bold uppercase tracking-widest text-primary">Ayia Napa • Paralimni • Kapparis</span>
               </div>
             </div>
             
-            <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold text-ink leading-[1.1] mb-6 flex flex-wrap gap-x-3 overflow-hidden">
-              <span className="block">Elevate</span> <span className="block">Your</span> <span className="block text-gradient">Space.</span>
+            <h1 className="hero-title text-6xl sm:text-7xl lg:text-8xl font-display font-extrabold text-ink leading-[1.05] mb-6 flex flex-wrap gap-x-4 overflow-hidden">
+              <span className="block">Bringing</span> 
+              <span className="block font-serif italic text-primary font-medium">warmth</span> 
+              <span className="block">& shine</span> 
+              <span className="block text-gradient">to your home.</span>
             </h1>
             
-            <p className="hero-desc text-lg sm:text-xl text-ink/70 mb-10 max-w-xl font-body leading-relaxed">
-              We are a dedicated family business serving the entire Famagusta area. We bring our professional team, impeccable quality standards, and <span className="font-serif italic text-primary">absolute peace of mind</span> to your home or office.
+            <p className="hero-desc text-lg sm:text-xl text-ink/70 mb-10 max-w-xl font-body leading-relaxed bg-surface/40 p-2 rounded-xl backdrop-blur-sm inline-block">
+              With 10 years of trusted experience, our family team brings impeccable quality, professional care, and absolute peace of mind to your sanctuary.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <a href="https://wa.me/35797898105" target="_blank" rel="noreferrer" className="hero-cta bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-primary-dark transition-all duration-300 shadow-xl shadow-primary/20 flex items-center gap-2">
-                <Phone className="w-5 h-5" /> Book via WhatsApp
+              <a href="https://wa.me/35797898105" target="_blank" rel="noreferrer" className="hero-cta bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-primary-dark hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-primary/30 flex items-center gap-2 text-lg">
+                <Phone className="w-5 h-5" /> Say Hello on WhatsApp
               </a>
-              <a href="#services" className="hero-cta px-8 py-4 rounded-full font-bold text-ink bg-white/50 backdrop-blur-md border border-white/40 hover:bg-white transition-all duration-300">
-                Explore Services
+              <a href="#services" className="hero-cta px-8 py-4 rounded-full font-bold text-primary bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 text-lg">
+                See How We Help <ArrowRight className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -179,20 +211,21 @@ export default function App() {
       </header>
 
       {/* 3. FEATURES (Trust Signals) */}
-      <section className="py-24 bg-surface relative z-30 -mt-10">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="py-24 bg-surface-dark relative z-30">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30 pointer-events-none mix-blend-overlay"></div>
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: Shield, title: "Family Operated", desc: "Built on a decade of trust, treating your space with the same respect we treat our own." },
-              { icon: Sparkles, title: "Uncompromising Quality", desc: "Meticulous attention to detail ensuring every corner meets our rigorous premium standards." },
-              { icon: Home, title: "Professional Team", desc: "Equipped with industry-leading tools and eco-friendly products for a flawless, deep clean." }
+              { icon: Heart, color: "text-warm", bg: "bg-warm-light", title: "Caring & Trusted", desc: "A husband & wife team. We treat your home, your family, and your pets with absolute love and respect." },
+              { icon: Sparkles, color: "text-primary", bg: "bg-accent-light", title: "Spotless Quality", desc: "10 years of experience means we know exactly where the dust hides. Meticulous cleaning every time." },
+              { icon: CheckCircle2, color: "text-[#20BD5A]", bg: "bg-[#20BD5A]/10", title: "Always Ready", desc: "Equipped with professional-grade tools and safe products. We come fully prepared so you can relax." }
             ].map((feat, i) => (
-              <div key={i} className="fade-up glass p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500">
-                <div className="w-12 h-12 bg-accent-light rounded-2xl flex items-center justify-center mb-6">
-                  <feat.icon className="w-6 h-6 text-primary" />
+              <div key={i} className="fade-up bg-white p-10 rounded-[2rem] hover:-translate-y-3 transition-transform duration-500 shadow-xl shadow-ink/5 border border-ink/5 group">
+                <div className={`w-16 h-16 ${feat.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                  <feat.icon className={`w-8 h-8 ${feat.color}`} />
                 </div>
-                <h3 className="text-xl font-bold font-display text-ink mb-3">{feat.title}</h3>
-                <p className="text-ink/60 text-sm leading-relaxed">{feat.desc}</p>
+                <h3 className="text-2xl font-bold font-display text-ink mb-3">{feat.title}</h3>
+                <p className="text-ink/60 text-base leading-relaxed">{feat.desc}</p>
               </div>
             ))}
           </div>
@@ -200,28 +233,33 @@ export default function App() {
       </section>
 
       {/* 4. SERVICES GRID */}
-      <section id="services" className="py-32 bg-white">
+      <section id="services" className="py-32 bg-surface">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="text-center max-w-2xl mx-auto mb-20 fade-up">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-primary mb-3">Our Expertise</h2>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-4 flex items-center justify-center gap-2">
+              <Sparkles className="w-4 h-4 text-warm" /> What We Do <Sparkles className="w-4 h-4 text-warm" />
+            </h2>
             <p className="text-4xl sm:text-5xl font-display font-extrabold text-ink leading-tight">
-              Tailored cleaning solutions for <span className="font-serif italic font-normal text-primary">every space.</span>
+              Cleaning services made with <span className="font-serif italic font-normal text-primary">care & love.</span>
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: "Deep Residential Clean", icon: Home, desc: "A comprehensive, top-to-bottom scrub of your entire home, hitting the spots daily cleaning misses." },
-              { name: "Move In / Move Out", icon: ArrowRight, desc: "Ensure a spotless transition. We prep homes for new occupants or restore them upon departure." },
-              { name: "Premium Commercial", icon: Shield, desc: "Maintain a pristine, professional environment for your staff and visiting clients." },
-              { name: "Post-Construction", icon: CheckCircle2, desc: "Thorough dust and debris removal following renovations, making the space instantly livable." },
-              { name: "Upholstery & Carpets", icon: Sparkles, desc: "Deep extraction cleaning to revive fabrics, remove allergens, and restore original vibrancy." },
-              { name: "Routine Maintenance", icon: Clock, desc: "Flexible weekly or bi-weekly schedules designed to keep your sanctuary effortlessly immaculate." }
+              { name: "Deep Home Clean", icon: Home, desc: "A top-to-bottom scrub hitting every overlooked corner. Perfect for spring cleaning or special occasions." },
+              { name: "Move In / Move Out", icon: ArrowRight, desc: "Stress-free transitions. We make old homes feel new and ensure your new house is perfectly sanitized." },
+              { name: "Offices & Shops", icon: Shield, desc: "A welcoming, fresh environment for your clients and a healthy, inspiring workspace for your team." },
+              { name: "Post-Construction", icon: CheckCircle2, desc: "Say goodbye to fine dust and building debris. We transform construction sites back into beautiful living spaces." },
+              { name: "Upholstery & Carpets", icon: Sparkles, desc: "Professional extraction cleaning to remove deep dirt, allergens, and spots from your favorite furniture." },
+              { name: "Routine Maintenance", icon: Clock, desc: "Flexible weekly or bi-weekly visits. Come home to a beautifully clean house, exactly the way you like it." }
             ].map((srv, i) => (
-              <div key={i} className="fade-up group p-8 border border-surface-dark rounded-3xl hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 bg-surface/30">
-                <srv.icon className="w-8 h-8 text-primary/40 group-hover:text-primary transition-colors mb-6" />
-                <h4 className="text-lg font-bold font-display text-ink mb-2">{srv.name}</h4>
-                <p className="text-sm text-ink/60 leading-relaxed">{srv.desc}</p>
+              <div key={i} className="fade-up group p-10 bg-white rounded-[2rem] shadow-sm hover:shadow-2xl hover:shadow-primary/10 border border-transparent hover:border-primary/20 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-accent-light rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="relative z-10">
+                  <srv.icon className="w-10 h-10 text-primary/40 group-hover:text-primary group-hover:scale-110 transition-all duration-500 mb-6" />
+                  <h4 className="text-xl font-bold font-display text-ink mb-3">{srv.name}</h4>
+                  <p className="text-base text-ink/60 leading-relaxed">{srv.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -229,25 +267,33 @@ export default function App() {
       </section>
 
       {/* 5. PROTOCOL (Process) - Sticky Stack */}
-      <section id="process" className="py-32 bg-ink text-surface relative">
-        <div className="max-w-4xl mx-auto px-6 sm:px-10">
-          <div className="mb-20 fade-up">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-accent mb-3">The Protocol</h2>
-            <p className="text-4xl sm:text-5xl font-display font-extrabold leading-tight">
-              How we deliver <span className="font-serif italic font-normal text-accent">perfection.</span>
+      <section id="process" className="py-32 bg-primary text-surface relative overflow-hidden">
+        {/* Warm ambient background glows */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-warm/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto px-6 sm:px-10 relative z-10">
+          <div className="mb-20 fade-up text-center">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-warm mb-4">How It Works</h2>
+            <p className="text-4xl sm:text-5xl font-display font-extrabold leading-tight text-white">
+              A simple, friendly <span className="font-serif italic font-normal text-accent-light">process.</span>
             </p>
           </div>
 
           <div className="relative">
             {[
-              { step: "01", title: "Consultation & Assessment", desc: "We evaluate your space via WhatsApp or in person to understand your specific needs, fragile surfaces, and scheduling preferences." },
-              { step: "02", title: "The Deep Clean", desc: "Our experienced team arrives fully equipped. We execute our meticulous checklist, ensuring no detail is overlooked." },
-              { step: "03", title: "Final Walkthrough", desc: "We review the space. You enjoy the unparalleled freshness and peace of mind that comes with a truly clean house." }
+              { step: "1", title: "Say Hello", desc: "Drop us a message on WhatsApp. Tell us what you need, where you live, and we'll figure out a friendly quote and time that works for you." },
+              { step: "2", title: "We Bring The Magic", desc: "Nadia and Cipri arrive with all the professional equipment and supplies needed. You can relax while we meticulously clean your space." },
+              { step: "3", title: "Enjoy Your Home", desc: "Walk into a house that smells fresh, looks sparkling, and feels incredibly welcoming. Your peace of mind is our final result." }
             ].map((step, i) => (
-              <div key={i} className="protocol-card sticky top-32 glass-dark p-10 md:p-14 rounded-3xl mb-24 last:mb-0 border border-white/10 shadow-2xl">
-                <span className="font-mono text-5xl font-light text-accent/20 absolute top-10 right-10">{step.step}</span>
-                <h3 className="text-2xl md:text-3xl font-display font-bold mb-4">{step.title}</h3>
-                <p className="text-surface/70 text-lg leading-relaxed max-w-lg">{step.desc}</p>
+              <div key={i} className="protocol-card sticky top-32 bg-white text-ink p-10 md:p-16 rounded-[2.5rem] mb-24 last:mb-0 shadow-2xl shadow-ink/20">
+                <div className="flex items-center gap-6 mb-6">
+                  <div className="w-16 h-16 rounded-full bg-warm-light flex items-center justify-center font-display font-extrabold text-3xl text-warm">
+                    {step.step}
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-display font-bold">{step.title}</h3>
+                </div>
+                <p className="text-ink/70 text-xl leading-relaxed pl-22">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -255,53 +301,62 @@ export default function App() {
       </section>
 
       {/* 6. CONTACT CTA */}
-      <section id="contact" className="py-32 bg-surface relative overflow-hidden">
+      <section id="contact" className="py-32 bg-surface-dark relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/30 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-warm/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-6 sm:px-10 relative z-10 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-lg mb-8 fade-up">
-            <Sparkles className="w-8 h-8 text-primary" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-xl shadow-warm/10 mb-8 fade-up">
+            <Heart className="w-10 h-10 text-warm fill-warm" />
           </div>
           <h2 className="text-4xl sm:text-6xl font-display font-extrabold text-ink mb-6 fade-up">
-            Ready for a pristine home?
+            Let's make your home shine!
           </h2>
-          <p className="text-lg sm:text-xl text-ink/70 mb-12 max-w-2xl mx-auto font-body fade-up">
-            Reach out directly to Nadia & Cipri. We operate primarily via WhatsApp to ensure fast, personal communication.
+          <p className="text-xl text-ink/70 mb-12 max-w-2xl mx-auto font-body fade-up">
+            Reach out directly to Nadia & Cipri. We reply fast, chat friendly, and can't wait to help you love your space again.
           </p>
           
-          <div className="fade-up flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="fade-up flex flex-col sm:flex-row items-center justify-center gap-6">
             <a 
               href="https://wa.me/35797898105" 
               target="_blank" 
               rel="noreferrer"
-              className="w-full sm:w-auto bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-[#20BD5A] transition-all shadow-xl shadow-[#25D366]/20 flex items-center justify-center gap-3"
+              className="w-full sm:w-auto bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[#20BD5A] hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#25D366]/30 transition-all duration-300 flex items-center justify-center gap-3"
             >
-              <Phone className="w-5 h-5" /> Chat on WhatsApp
+              <Phone className="w-6 h-6" /> Text Us on WhatsApp
             </a>
-            <span className="text-ink/50 font-mono text-sm sm:ml-4">+357 97 898105</span>
+            <span className="text-ink/60 font-medium text-lg bg-white px-6 py-4 rounded-full shadow-sm border border-ink/5">
+              +357 97 898105
+            </span>
           </div>
         </div>
       </section>
 
       {/* 7. FOOTER */}
-      <footer className="bg-ink text-surface/60 py-12 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="font-display font-bold text-surface tracking-wide">
-              CLEAN HOUSE <span className="font-serif italic font-normal">by Nadia & Cipri</span>
-            </span>
+      <footer className="bg-ink text-surface/80 py-16">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles className="w-5 h-5 text-accent" />
+              <span className="font-display font-bold text-xl text-white tracking-wide">
+                CLEAN HOUSE <span className="font-serif italic font-normal">by Nadia & Cipri</span>
+              </span>
+            </div>
+            <p className="text-surface/50 text-sm">Quality family cleaning in Cyprus.</p>
           </div>
           
-          <div className="flex items-center gap-6 text-sm">
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" /> Serving the Famagusta area
+          <div className="flex items-center gap-6 bg-white/5 px-6 py-3 rounded-full border border-white/10">
+            <span className="flex items-center gap-3 text-sm font-medium">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#20BD5A] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#25D366]"></span>
+              </span>
+              Accepting clients in Famagusta area
             </span>
           </div>
 
-          <div className="text-sm font-mono opacity-50">
+          <div className="text-sm font-body opacity-50">
             &copy; {new Date().getFullYear()} Clean House by Nadia & Cipri.
           </div>
         </div>

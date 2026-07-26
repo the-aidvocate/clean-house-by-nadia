@@ -9,20 +9,24 @@ export default {
       colors: {
         primary: {
           DEFAULT: '#3B7197', // Deep Teal / Steel Blue from the logo text
-          dark: '#2A5574',    // Darker shade for hover states
-          light: '#619BBF',   // Lighter shade for accents
+          dark: '#2A5574',
+          light: '#619BBF',
         },
         accent: {
-          DEFAULT: '#B0D0E8', // Light sky blue from the sparkles
-          light: '#E6F0F9',   // Very light blue for backgrounds
+          DEFAULT: '#B0D0E8', // Light sky blue
+          light: '#E6F0F9',
+        },
+        warm: {
+          DEFAULT: '#F2C94C', // Warm sunshine/gold accent
+          light: '#FEF3C7',
         },
         surface: {
-          DEFAULT: '#F8FAFC', // Almost white but slightly cool
-          dark: '#F1F5F9',    // Slate 50
+          DEFAULT: '#FFFCF5', // Warm pearl/cream instead of cold white
+          dark: '#F4EFEB',    // Cozy off-white
         },
         ink: {
-          DEFAULT: '#0F172A', // Slate 900
-          light: '#334155',   // Slate 700
+          DEFAULT: '#27272A', // Softer charcoal instead of harsh slate
+          light: '#4B5563',
         }
       },
       fontFamily: {
@@ -34,6 +38,7 @@ export default {
       animation: {
         'sparkle': 'sparkle 3s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
+        'bounce-slow': 'bounce 3s infinite',
       },
       keyframes: {
         sparkle: {
@@ -42,7 +47,7 @@ export default {
         },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-15px)' },
         }
       }
     },
