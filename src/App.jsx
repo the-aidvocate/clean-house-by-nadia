@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Sparkles, CheckCircle2, Phone, MapPin, Shield, Star, Home, Clock, Menu, X, ArrowRight, Heart } from 'lucide-react';
+import SideRays from './SideRays';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -154,26 +155,21 @@ export default function App() {
           />
         </div>
 
-        {/* Signature Animation: Floating Sparkles */}
-        <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
-          {signatureSparks.map((_, i) => {
-            const isGold = i % 3 === 0;
-            return (
-              <Sparkles 
-                key={i}
-                className={`absolute animate-float ${isGold ? 'text-gold' : 'text-primary/30'}`}
-                style={{
-                  top: `${10 + Math.random() * 80}%`,
-                  left: `${5 + Math.random() * 90}%`,
-                  width: `${16 + Math.random() * 32}px`,
-                  height: `${16 + Math.random() * 32}px`,
-                  animationDelay: `${Math.random() * 4}s`,
-                  animationDuration: `${5 + Math.random() * 5}s`,
-                  opacity: 0.6 + Math.random() * 0.4
-                }}
-              />
-            )
-          })}
+        {/* Signature Animation: Side Rays */}
+        <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden opacity-60">
+          <SideRays
+            speed={2.5}
+            rayColor1="#C98729"
+            rayColor2="#0F3562"
+            intensity={2}
+            spread={2}
+            origin="top-right"
+            tilt={0}
+            saturation={1.5}
+            blend={0.75}
+            falloff={1.6}
+            opacity={1}
+          />
         </div>
 
         {/* Hero Content */}
