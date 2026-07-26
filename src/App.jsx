@@ -156,20 +156,19 @@ export default function App() {
         </div>
 
         {/* Signature Animation: Side Rays & Sparkles */}
-        <div className="absolute inset-0 z-20 pointer-events-none opacity-80">
+        <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 20, pointerEvents: 'none' }}>
           <SideRays
-            speed={2.0}
-            rayColor1="#D4AF37" // Premium Gold
-            rayColor2="#3B7197" // Deep Teal
-            intensity={6}
-            spread={3.5}
+            speed={2.5}
+            rayColor1="#C98729"
+            rayColor2="#0F3562"
+            intensity={2}
+            spread={2}
             origin="top-right"
-            tilt={-10}
-            saturation={2.0}
-            blend={0.5}
-            falloff={1.0}
-            opacity={1.0}
-            className="w-full h-full absolute inset-0"
+            tilt={0}
+            saturation={1.5}
+            blend={0.75}
+            falloff={1.6}
+            opacity={1}
           />
         </div>
 
