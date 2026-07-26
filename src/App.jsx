@@ -155,7 +155,7 @@ export default function App() {
           />
         </div>
 
-        {/* Signature Animation: Side Rays */}
+        {/* Signature Animation: Side Rays & Sparkles */}
         <div className="absolute inset-0 z-20 pointer-events-none opacity-80">
           <SideRays
             speed={2.0}
@@ -169,7 +169,30 @@ export default function App() {
             blend={0.5}
             falloff={1.0}
             opacity={1.0}
+            className="w-full h-full absolute inset-0"
           />
+        </div>
+
+        {/* Floating Sparkles (Restored) */}
+        <div className="absolute inset-0 z-25 pointer-events-none overflow-hidden">
+          {signatureSparks.map((_, i) => {
+            const isGold = i % 3 === 0;
+            return (
+              <Sparkles 
+                key={i}
+                className={`absolute animate-float ${isGold ? 'text-gold' : 'text-primary/30'}`}
+                style={{
+                  top: `${10 + Math.random() * 80}%`,
+                  left: `${5 + Math.random() * 90}%`,
+                  width: `${16 + Math.random() * 32}px`,
+                  height: `${16 + Math.random() * 32}px`,
+                  animationDelay: `${Math.random() * 4}s`,
+                  animationDuration: `${5 + Math.random() * 5}s`,
+                  opacity: 0.6 + Math.random() * 0.4
+                }}
+              />
+            )
+          })}
         </div>
 
         {/* Hero Content */}
