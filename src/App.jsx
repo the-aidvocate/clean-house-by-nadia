@@ -190,11 +190,11 @@ export default function App() {
               </div>
             </div>
             
-            <h1 className="hero-title text-6xl sm:text-7xl lg:text-8xl font-display font-extrabold text-ink leading-[1.05] mb-6 flex flex-wrap gap-x-4 overflow-hidden drop-shadow-sm pb-2">
-              <span className="block pb-1">Bringing</span> 
-              <span className="block font-serif italic text-gold font-medium pb-1">warmth</span> 
-              <span className="block pb-1">& shine</span> 
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light pb-2">to your home.</span>
+            <h1 className="hero-title text-6xl sm:text-7xl lg:text-8xl font-display font-extrabold text-ink leading-tight mb-6 flex flex-wrap gap-x-4 overflow-visible drop-shadow-sm pb-4">
+              <span className="block pb-2">Bringing</span> 
+              <span className="block font-serif italic text-gold font-medium pb-2">warmth</span> 
+              <span className="block pb-2">& shine</span> 
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light pb-4">to your home.</span>
             </h1>
             
             <p className="hero-desc text-lg sm:text-xl text-ink/80 mb-10 max-w-xl font-body leading-relaxed bg-white/60 p-4 rounded-xl backdrop-blur-md border border-white inline-block shadow-lg shadow-primary/5">
