@@ -93,8 +93,8 @@ export default function App() {
             {/* Logo Image */}
             <a href="#top" className="flex items-center group">
               <img 
-                src="/LOGO CLEAN HOUSE BY NADIA.png" 
-                alt="Clean House by Nadia Logo" 
+                src="/LOGO CLEAN HOUSE BY NADIA CIPRI.png" 
+                alt="Cleaning House by Nadia & Cipri Logo" 
                 className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
               />
             </a>
@@ -411,8 +411,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col items-center md:items-start gap-3">
             <img 
-              src="/LOGO CLEAN HOUSE BY NADIA.jpg" 
-              alt="Clean House by Nadia Logo" 
+              src="/LOGO CLEAN HOUSE BY NADIA CIPRI.png" 
+              alt="Cleaning House by Nadia & Cipri Logo" 
               className="h-10 w-auto mix-blend-multiply opacity-80"
             />
             <p className="text-ink/60 text-sm">Quality family cleaning in Cyprus.</p>
@@ -429,7 +429,7 @@ export default function App() {
           </div>
 
           <div className="text-sm font-body opacity-60 text-primary-dark font-medium">
-            &copy; {new Date().getFullYear()} Clean House by Nadia & Cipri.
+            &copy; {new Date().getFullYear()} Cleaning House by Nadia & Cipri.
           </div>
         </div>
       </footer>
