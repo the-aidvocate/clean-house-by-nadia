@@ -391,21 +391,35 @@ export default function App() {
             Let's make your home shine!
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto font-body fade-up">
-            Reach out directly to Nadia & Cipri. We reply fast, chat friendly, and can't wait to help you love your space again.
+            Reach out directly to Nadia or Ciprian for a customized quote. We reply fast, chat friendly, and can't wait to help you love your space again.
           </p>
           
-          <div className="fade-up flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a 
-              href="https://wa.me/35797898105" 
-              target="_blank" 
-              rel="noreferrer"
-              className="w-full sm:w-auto bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[#20BD5A] hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-dark/40 transition-all duration-300 flex items-center justify-center gap-3"
-            >
-              <Phone className="w-6 h-6" /> Text Us on WhatsApp
-            </a>
-            <span className="text-white font-bold text-lg bg-primary-dark/40 backdrop-blur-md px-6 py-4 rounded-full shadow-sm border border-white/20">
-              +357 97 898105
-            </span>
+          <div className="fade-up flex flex-col md:flex-row items-center justify-center gap-6">
+            <div className="flex flex-col items-center bg-white/10 backdrop-blur-md p-8 rounded-[2rem] border border-white/20 hover:bg-white/20 transition-all shadow-xl w-full md:w-auto">
+              <span className="text-gold font-bold uppercase tracking-widest text-sm mb-4">Contact Nadia</span>
+              <a 
+                href="https://wa.me/35799136428" 
+                target="_blank" 
+                rel="noreferrer"
+                className="w-full bg-[#25D366] text-white px-8 py-3.5 rounded-full font-bold text-lg hover:bg-[#20BD5A] transition-all duration-300 flex items-center justify-center gap-3 mb-4 shadow-lg shadow-[#25D366]/20"
+              >
+                <Phone className="w-5 h-5" /> WhatsApp Nadia
+              </a>
+              <span className="text-white font-mono text-lg font-medium">+357 99 136 428</span>
+            </div>
+
+            <div className="flex flex-col items-center bg-white/10 backdrop-blur-md p-8 rounded-[2rem] border border-white/20 hover:bg-white/20 transition-all shadow-xl w-full md:w-auto">
+              <span className="text-gold font-bold uppercase tracking-widest text-sm mb-4">Contact Ciprian</span>
+              <a 
+                href="https://wa.me/35797898105" 
+                target="_blank" 
+                rel="noreferrer"
+                className="w-full bg-[#25D366] text-white px-8 py-3.5 rounded-full font-bold text-lg hover:bg-[#20BD5A] transition-all duration-300 flex items-center justify-center gap-3 mb-4 shadow-lg shadow-[#25D366]/20"
+              >
+                <Phone className="w-5 h-5" /> WhatsApp Ciprian
+              </a>
+              <span className="text-white font-mono text-lg font-medium">+357 97 898 105</span>
+            </div>
           </div>
         </div>
       </section>
