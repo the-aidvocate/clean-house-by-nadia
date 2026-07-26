@@ -207,6 +207,18 @@ export default function App() {
                 <span className="text-xs font-bold uppercase tracking-widest text-primary-dark">Ayia Napa • Paralimni • Kapparis</span>
               </div>
             </div>
+
+            {/* Animated Logo Video */}
+            <div className="hero-badge mb-8 overflow-hidden rounded-3xl shadow-2xl shadow-primary/20 border border-white/20 inline-block bg-black/20 backdrop-blur-sm max-w-[400px]">
+              <video 
+                src="/animated-logo.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-auto object-cover mix-blend-screen"
+              />
+            </div>
             
             <h1 className="hero-title text-6xl sm:text-7xl lg:text-8xl font-display font-extrabold text-ink leading-tight mb-6 flex flex-wrap gap-x-4 overflow-visible drop-shadow-sm pb-4">
               <span className="block pb-2">Bringing</span> 
