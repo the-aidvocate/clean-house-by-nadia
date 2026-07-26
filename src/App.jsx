@@ -93,9 +93,9 @@ export default function App() {
             {/* Logo Image */}
             <a href="#top" className="flex items-center group">
               <img 
-                src="/LOGO CLEAN HOUSE BY NADIA.jpg" 
+                src="/LOGO CLEAN HOUSE BY NADIA.png" 
                 alt="Clean House by Nadia Logo" 
-                className="h-12 w-auto mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
+                className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
               />
             </a>
 
@@ -186,11 +186,11 @@ export default function App() {
               </div>
             </div>
             
-            <h1 className="hero-title text-6xl sm:text-7xl lg:text-8xl font-display font-extrabold text-ink leading-[1.05] mb-6 flex flex-wrap gap-x-4 overflow-hidden drop-shadow-sm">
-              <span className="block">Bringing</span> 
-              <span className="block font-serif italic text-gold font-medium">warmth</span> 
-              <span className="block">& shine</span> 
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">to your home.</span>
+            <h1 className="hero-title text-6xl sm:text-7xl lg:text-8xl font-display font-extrabold text-ink leading-[1.05] mb-6 flex flex-wrap gap-x-4 overflow-hidden drop-shadow-sm pb-2">
+              <span className="block pb-1">Bringing</span> 
+              <span className="block font-serif italic text-gold font-medium pb-1">warmth</span> 
+              <span className="block pb-1">& shine</span> 
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light pb-2">to your home.</span>
             </h1>
             
             <p className="hero-desc text-lg sm:text-xl text-ink/80 mb-10 max-w-xl font-body leading-relaxed bg-white/60 p-4 rounded-xl backdrop-blur-md border border-white inline-block shadow-lg shadow-primary/5">
@@ -247,9 +247,9 @@ export default function App() {
             {[
               { name: "Deep Home Clean", icon: Home, image: "/pexels-tima-miroshnichenko-6195122.jpg", desc: "A top-to-bottom scrub hitting every overlooked corner. Perfect for spring cleaning or special occasions." },
               { name: "Move In / Move Out", icon: ArrowRight, image: "/pexels-antonius-ferret-6223025.jpg", desc: "Stress-free transitions. We make old homes feel new and ensure your new house is perfectly sanitized." },
-              { name: "Offices & Shops", icon: Shield, image: "/pexels-jonathanborba-28576631.jpg", desc: "A welcoming, fresh environment for your clients and a healthy, inspiring workspace for your team." },
-              { name: "Post-Construction", icon: CheckCircle2, image: "/pexels-karola-g-4239145.jpg", desc: "Say goodbye to fine dust and building debris. We transform construction sites back into beautiful living spaces." },
-              { name: "Upholstery & Carpets", icon: Sparkles, image: "/pexels-karola-g-4239146.jpg", desc: "Professional extraction cleaning to remove deep dirt, allergens, and spots from your favorite furniture." },
+              { name: "Offices & Shops", icon: Shield, image: "/office.jpg", desc: "A welcoming, fresh environment for your clients and a healthy, inspiring workspace for your team." },
+              { name: "Hotel-Style Cleaning", icon: Star, image: "/hotel style cleaning.jpg", desc: "Immaculate, detailed turnovers. We prepare your property to premium standards, ready to wow your next guests." },
+              { name: "Upholstery & Carpets", icon: Sparkles, image: "/carpets.jpg", desc: "Professional extraction cleaning to remove deep dirt, allergens, and spots from your favorite furniture." },
               { name: "Routine Maintenance", icon: Clock, image: "/pexels-liliana-drew-9462105.jpg", desc: "Flexible weekly or bi-weekly visits. Come home to a beautifully clean house, exactly the way you like it." }
             ].map((srv, i) => (
               <div key={i} className="fade-up group relative h-80 rounded-[2rem] shadow-sm hover:shadow-2xl hover:shadow-primary/20 overflow-hidden cursor-pointer border border-primary/10">
@@ -309,6 +309,66 @@ export default function App() {
                 <p className="text-ink/80 text-xl leading-relaxed pl-22">{step.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5.5 AIRBNB & BOOKING HOSTS SECTION */}
+      <section className="py-32 bg-surface-dark relative overflow-hidden border-b border-primary/5">
+        <div className="absolute right-0 top-0 w-1/3 h-full bg-primary/5 -skew-x-12 translate-x-20 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            {/* Image Side */}
+            <div className="w-full lg:w-1/2 relative fade-up">
+              <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/10">
+                <img 
+                  src="/hotel style cleaning.jpg" 
+                  alt="Perfectly made hotel bed" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-3xl shadow-xl shadow-primary/10 border border-primary/5 hidden md:block">
+                <div className="flex items-center gap-4 mb-2">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-gold fill-gold" />)}
+                </div>
+                <p className="font-display font-bold text-primary-dark">5-Star Cleanliness</p>
+                <p className="text-sm text-ink/60">Superhost Standard</p>
+              </div>
+            </div>
+
+            {/* Content Side */}
+            <div className="w-full lg:w-1/2 fade-up">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 text-gold-dark font-bold text-xs uppercase tracking-widest mb-6">
+                <MapPin className="w-4 h-4" /> Short-Term Rentals
+              </div>
+              
+              <h2 className="text-4xl sm:text-5xl font-display font-extrabold text-primary-dark leading-tight mb-6">
+                Turnover services for <span className="text-primary font-serif italic font-normal">Airbnb & Booking</span> hosts.
+              </h2>
+              
+              <p className="text-lg text-ink/70 leading-relaxed mb-8">
+                Managing a short-term rental is stressful enough without worrying about the cleaning. We provide hotel-standard turnovers that guarantee 5-star cleanliness reviews from your guests. 
+              </p>
+
+              <ul className="space-y-4 mb-10">
+                {[
+                  "Fast, reliable turnovers between check-ins",
+                  "Linen changes and professional bed-making",
+                  "Restocking of essentials (toiletries, coffee, etc.)",
+                  "Damage reporting and visual checks post-checkout"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-6 h-6 text-[#20BD5A] shrink-0" />
+                    <span className="text-ink/80 font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a href="https://wa.me/35797898105" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-primary-dark transition-all duration-300 shadow-xl shadow-primary/20">
+                Partner With Us <ArrowRight className="w-5 h-5 text-gold" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
