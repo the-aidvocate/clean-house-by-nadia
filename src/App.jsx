@@ -156,19 +156,19 @@ export default function App() {
         </div>
 
         {/* Signature Animation: Side Rays */}
-        <div className="absolute inset-0 z-25 pointer-events-none mix-blend-screen">
+        <div className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply opacity-70">
           <SideRays
             speed={2.5}
-            rayColor1="#D4AF37" // Brighter gold
-            rayColor2="#619BBF" // Brighter blue
-            intensity={5} // Increased from 2
+            rayColor1="#8B6508" // Darker Gold
+            rayColor2="#1E405A" // Darker Blue
+            intensity={8}
             spread={3}
             origin="top-right"
             tilt={0}
             saturation={2.0}
             blend={0.5}
-            falloff={1.2} // Reduced falloff so rays travel further
-            opacity={1}
+            falloff={1.2}
+            opacity={5}
           />
         </div>
 
