@@ -9,24 +9,21 @@ export default {
       colors: {
         primary: {
           DEFAULT: '#3B7197', // Deep Teal / Steel Blue from the logo text
-          dark: '#2A5574',
+          dark: '#1E405A',
           light: '#619BBF',
         },
-        accent: {
-          DEFAULT: '#B0D0E8', // Light sky blue
-          light: '#E6F0F9',
-        },
-        warm: {
-          DEFAULT: '#F2C94C', // Warm sunshine/gold accent
-          light: '#FEF3C7',
+        gold: {
+          DEFAULT: '#D4AF37', // Premium Gold
+          light: '#F3E5AB',
+          dark: '#AA8822',
         },
         surface: {
-          DEFAULT: '#FFFCF5', // Warm pearl/cream instead of cold white
-          dark: '#F4EFEB',    // Cozy off-white
+          DEFAULT: '#FAFAFA', // Clean warm white
+          dark: '#F0F4F8',    // Very light blue-gray
         },
         ink: {
-          DEFAULT: '#27272A', // Softer charcoal instead of harsh slate
-          light: '#4B5563',
+          DEFAULT: '#1E293B', // Slate 800
+          light: '#475569',
         }
       },
       fontFamily: {
