@@ -140,13 +140,13 @@ export default function App() {
         {/* BG Image */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-primary-dark">
           {/* Deep Blue & Gold Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/90 via-primary-dark/70 to-surface z-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/90 via-primary/30 to-primary-dark/60 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/90 via-primary-dark/60 to-surface z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary-dark/40 to-primary-dark/80 z-10" />
           
           <img 
-            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=80" 
+            src="/pexels-liliana-drew-9462096.jpg" 
             alt="Smiling cleaning professionals" 
-            className="hero-bg w-full h-full object-cover object-center opacity-60"
+            className="hero-bg w-full h-full object-cover object-center opacity-70"
             style={{ transformOrigin: 'top center' }}
           />
         </div>
@@ -246,19 +246,33 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: "Deep Home Clean", icon: Home, desc: "A top-to-bottom scrub hitting every overlooked corner. Perfect for spring cleaning or special occasions." },
-              { name: "Move In / Move Out", icon: ArrowRight, desc: "Stress-free transitions. We make old homes feel new and ensure your new house is perfectly sanitized." },
-              { name: "Offices & Shops", icon: Shield, desc: "A welcoming, fresh environment for your clients and a healthy, inspiring workspace for your team." },
-              { name: "Post-Construction", icon: CheckCircle2, desc: "Say goodbye to fine dust and building debris. We transform construction sites back into beautiful living spaces." },
-              { name: "Upholstery & Carpets", icon: Sparkles, desc: "Professional extraction cleaning to remove deep dirt, allergens, and spots from your favorite furniture." },
-              { name: "Routine Maintenance", icon: Clock, desc: "Flexible weekly or bi-weekly visits. Come home to a beautifully clean house, exactly the way you like it." }
+              { name: "Deep Home Clean", icon: Home, image: "/pexels-tima-miroshnichenko-6195122.jpg", desc: "A top-to-bottom scrub hitting every overlooked corner. Perfect for spring cleaning or special occasions." },
+              { name: "Move In / Move Out", icon: ArrowRight, image: "/pexels-antonius-ferret-6223025.jpg", desc: "Stress-free transitions. We make old homes feel new and ensure your new house is perfectly sanitized." },
+              { name: "Offices & Shops", icon: Shield, image: "/pexels-jonathanborba-28576631.jpg", desc: "A welcoming, fresh environment for your clients and a healthy, inspiring workspace for your team." },
+              { name: "Post-Construction", icon: CheckCircle2, image: "/pexels-karola-g-4239145.jpg", desc: "Say goodbye to fine dust and building debris. We transform construction sites back into beautiful living spaces." },
+              { name: "Upholstery & Carpets", icon: Sparkles, image: "/pexels-karola-g-4239146.jpg", desc: "Professional extraction cleaning to remove deep dirt, allergens, and spots from your favorite furniture." },
+              { name: "Routine Maintenance", icon: Clock, image: "/pexels-liliana-drew-9462105.jpg", desc: "Flexible weekly or bi-weekly visits. Come home to a beautifully clean house, exactly the way you like it." }
             ].map((srv, i) => (
-              <div key={i} className="fade-up group p-10 bg-white rounded-[2rem] shadow-sm hover:shadow-2xl hover:shadow-primary/15 border border-transparent hover:border-gold/30 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                <div className="relative z-10">
-                  <srv.icon className="w-10 h-10 text-primary/30 group-hover:text-gold group-hover:scale-110 transition-all duration-500 mb-6" />
-                  <h4 className="text-xl font-bold font-display text-primary-dark mb-3">{srv.name}</h4>
-                  <p className="text-base text-ink/70 leading-relaxed">{srv.desc}</p>
+              <div key={i} className="fade-up group relative h-80 rounded-[2rem] shadow-sm hover:shadow-2xl hover:shadow-gold/20 overflow-hidden cursor-pointer">
+                {/* Background Image */}
+                <img 
+                  src={srv.image} 
+                  alt={srv.name} 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/60 to-transparent transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-primary-dark/40 group-hover:opacity-0 transition-opacity duration-500" />
+                
+                {/* Content */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <div className="w-12 h-12 bg-gold/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 border border-gold/30">
+                      <srv.icon className="w-6 h-6 text-gold" />
+                    </div>
+                    <h4 className="text-2xl font-bold font-display text-white mb-2">{srv.name}</h4>
+                    <p className="text-sm text-white/80 leading-relaxed opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500">{srv.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
