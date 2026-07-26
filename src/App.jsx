@@ -159,8 +159,8 @@ export default function App() {
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 20, pointerEvents: 'none' }}>
           <SideRays
             speed={2.5}
-            rayColor1="#C98729"
-            rayColor2="#0F3562"
+            rayColor1="#B8860B" // Darker, richer Gold (DarkGoldenrod)
+            rayColor2="#1A365D" // Dark Blue (Slate 900 / Navy)
             intensity={2}
             spread={2}
             origin="top-right"
