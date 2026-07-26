@@ -95,19 +95,23 @@ export default function App() {
               <img 
                 src="/LOGO CLEAN HOUSE BY NADIA CIPRI.png" 
                 alt="Cleaning House by Nadia & Cipri Logo" 
-                className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
+                className="h-20 w-auto group-hover:scale-105 transition-transform duration-300 -my-2"
               />
             </a>
 
             {/* Desktop Links */}
             <div className="hidden lg:flex items-center gap-8">
-              {['Services', 'Process', 'About', 'Contact'].map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-bold text-ink/70 hover:text-primary transition-colors">
+              {['Services', 'Process', 'Short-Term Rentals', 'Contact'].map((item) => (
+                <a 
+                  key={item} 
+                  href={item === 'Short-Term Rentals' ? '#airbnb' : `#${item.toLowerCase()}`} 
+                  className="text-sm font-bold text-ink/70 hover:text-primary transition-colors"
+                >
                   {item}
                 </a>
               ))}
-              <a href="https://wa.me/35797898105" target="_blank" rel="noreferrer" className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary-dark hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center gap-2 border border-primary-light/50">
-                <Phone className="w-4 h-4 text-gold" /> WhatsApp Us
+              <a href="#contact" className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary-dark hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center gap-2 border border-primary-light/50">
+                <Phone className="w-4 h-4 text-gold" /> Contact Us
               </a>
             </div>
 
@@ -121,10 +125,10 @@ export default function App() {
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl transition-all duration-400 flex flex-col justify-center items-center gap-8 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        {['Services', 'Process', 'About', 'Contact'].map((item, i) => (
+        {['Services', 'Process', 'Short-Term Rentals', 'Contact'].map((item, i) => (
           <a 
             key={item} 
-            href={`#${item.toLowerCase()}`} 
+            href={item === 'Short-Term Rentals' ? '#airbnb' : `#${item.toLowerCase()}`} 
             onClick={() => setMobileMenuOpen(false)} 
             className="text-4xl font-serif italic text-primary hover:text-primary-dark transition-colors"
             style={{ transitionDelay: `${i * 50}ms` }}
@@ -198,8 +202,8 @@ export default function App() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <a href="https://wa.me/35797898105" target="_blank" rel="noreferrer" className="hero-cta bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-primary-dark hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-primary/30 flex items-center gap-2 text-lg border border-primary-light/50">
-                <Phone className="w-5 h-5 text-gold" /> Say Hello on WhatsApp
+              <a href="#contact" className="hero-cta bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-primary-dark hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-primary/30 flex items-center gap-2 text-lg border border-primary-light/50">
+                <Phone className="w-5 h-5 text-gold" /> Contact Us
               </a>
               <a href="#services" className="hero-cta px-8 py-4 rounded-full font-bold text-primary-dark bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 text-lg border border-gold/30">
                 See How We Help <ArrowRight className="w-5 h-5 text-gold" />
@@ -314,7 +318,7 @@ export default function App() {
       </section>
 
       {/* 5.5 AIRBNB & BOOKING HOSTS SECTION */}
-      <section className="py-32 bg-surface-dark relative overflow-hidden border-b border-primary/5">
+      <section id="airbnb" className="py-32 bg-surface-dark relative overflow-hidden border-b border-primary/5">
         <div className="absolute right-0 top-0 w-1/3 h-full bg-primary/5 -skew-x-12 translate-x-20 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
